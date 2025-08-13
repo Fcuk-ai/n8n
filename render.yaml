@@ -1,0 +1,38 @@
+# Exported from Render on 2025-08-13T17:30:13Z
+databases:
+- name: n8n-db
+  databaseName: n8n_db_mzzq
+  user: n8n_db_mzzq_user
+  plan: free
+  region: oregon
+  ipAllowList:
+  - source: 0.0.0.0/0
+    description: everywhere
+  postgresMajorVersion: "16"
+services:
+- type: web
+  name: n8n-service
+  runtime: image
+  image:
+    url: docker.io/n8nio/n8n:latest
+  plan: free
+  envVars:
+  - key: DB_POSTGRESDB_USER
+    sync: false
+  - key: DB_POSTGRESDB_PASSWORD
+    fromDatabase:
+      name: n8n-db
+      property: password
+  - key: DB_POSTGRESDB_HOST
+    fromDatabase:
+      name: n8n-db
+      property: host
+  - key: DB_POSTGRESDB_DATABASE
+    sync: false
+  - key: DB_TYPE
+    sync: false
+  - key: N8N_ENCRYPTION_KEY
+    sync: false
+  region: oregon
+  autoDeployTrigger: commit
+version: "1"
