@@ -38,6 +38,6 @@ services:
         sync: false
       # This ensures the webhook/chat trigger URL uses your live Render domain
       - key: WEBHOOK_URL
-        value: https://n8n-service-uvde.onrender.com/
+        value: https://n8n-service-jy2a.onrender.com/
     region: oregon
     autoDeployTrigger: commit
